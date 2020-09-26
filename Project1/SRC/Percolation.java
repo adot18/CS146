@@ -10,6 +10,7 @@ public class Percolation {
     private int virtualTopSite;
     private int virtualBottomSite;
     public int openSite;
+    private WeightedQuickUnionUF weightedQUF2;
 
     private final static int Virtual_Sites = 2;
 
@@ -25,6 +26,7 @@ public class Percolation {
         this.virtualTopSite = 0;
         this.virtualBottomSite = N * N + 1;
         this.weightedQUF = new WeightedQuickUnionUF(N * N + Virtual_Sites);
+        this.weightedQUF2 = new WeightedQuickUnionUF(N * N + 1);
 
         for (int i = 0; i < N; i++) {
             for (int k = 0; k < N; k++) {
@@ -53,8 +55,11 @@ public class Percolation {
 
 
         //Connect to virtual top and bot
-        if (row == 0)
+        if (row == 0) {
             weightedQUF.union(currentSite, virtualTopSite);
+            weightedQUF2.union(currentSite, virtualTopSite);
+        }
+
         if (row == gridSize - 1)
             weightedQUF.union(virtualBottomSite, currentSite);
 
@@ -72,7 +77,7 @@ public class Percolation {
         //...
         int currentSite = encode(row, col);
 
-        return weightedQUF.connected(currentSite, virtualTopSite);
+        return weightedQUF2.connected(currentSite, virtualTopSite);
 
 
     }
@@ -106,6 +111,7 @@ public class Percolation {
         try {
             if (isOpen(row, col)) {
                 weightedQUF.union(currentSite, encode(row, col));
+                weightedQUF2.union(currentSite, encode(row, col));
             }
         } catch (IndexOutOfBoundsException e) {
 
