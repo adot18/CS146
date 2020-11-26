@@ -15,3 +15,6 @@ Project 1: Using Weighted-Union, Quick-Union, and Quick-Find Data Structures
 
 
 Project 2: Linked-List and Enqueue Implementation
+
+
+Project 3: Binary Search
