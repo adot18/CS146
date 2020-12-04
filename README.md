@@ -18,3 +18,5 @@ Project 2: Linked-List and Enqueue Implementation
 
 
 Project 3: Binary Search
+
+Project 4: 8*8 Puzzle Solver (A* Implementation w/ Priority Queue)
